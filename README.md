@@ -18,7 +18,8 @@
 <br>
 
 ## 1-3 해결
-- this.characterCount[index+1] = this.textareas[index+1].length;
+```javascript
+this.characterCount[index+1] = this.textareas[index+1].length;
 - 코드를 추가하여, 텍스트 영역의 값을 업데이트한 후 글자 수를 저장하도록 수정함. 이로 인해 페이지 재방문 시에도 입력된 글자 수가 올바르게 표시되도록 개선됨.
 
 ## 1-4 느낀점
@@ -38,3 +39,16 @@
 
 ## 2-2 원인
 - input file이 페이지가 이동되면 보안상 값이 초기화 되면서 "undefined"으로 됨
+
+
+## 2-3 해결
+- input file이 이벤트 발생 시 이미지 이름을 로컬 스토리지에 임시로 값을 넣고, input hidden도 "imageExits" 값을 넣는다 <br>
+- 임시저장, 최종제출 로직 돌리기 전 로컬스토리지와 hidden값을 if으로 확인하여 있다면 "requerid" 제거 없으면 추가
+
+<br>
+
+## 2-4 느낀점
+- 처음에 input file의 값이 왜 안들어오는지 매우 어려웠다.. 나갔다 들어왔을 뿐인데... <br>
+- 구글링 하니 보안 정책상 값이 자동으로 초기화 된다는 사실을 알고 우선 db에 저장이 되어 있으니 <br>
+- 로컬 스토리지로 이미지 이름을 저장하고 hidden도 값을 추가했다 <br>
+- hidden을 추가한 이유는 file이 이벤트 발생 시 스토리지에 값을 넣는것으로 코드를 짰는데 이미지 넣고 저장안하고 나갔다 들어와도 값이 있기 때문이다 <br>
