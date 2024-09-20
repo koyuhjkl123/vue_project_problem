@@ -19,7 +19,18 @@
 
 ## 1-3 해결
 ```javascript
-this.characterCount[index+1] = this.textareas[index+1].length;
+//기술서
+res.data.selectApplFrmTechList.forEach((item, index) => {
+  if(document.querySelectorAll('textarea[name=tech_itm_cont]')[index]){
+    this.textareas[index+1] = this.checkChangeValue(item.tech_itm_cont);
+    console.log("List 확인용 : " + item.tech_itm_cont);
+    console.log("index 확인용 : " + index);
+    console.log("selectApplFrmTechList : " + this.textareas[index+1].length);
+
+    // 조회하기 메서드인데 글자수 업데이트를 하기 위해 추가함
+    this.characterCount[index+1] = this.textareas[index+1].length;
+  }
+});
 ```
 - 코드를 추가하여, 텍스트 영역의 값을 업데이트한 후 글자 수를 저장하도록 수정함. 이로 인해 페이지 재방문 시에도 입력된 글자 수가 올바르게 표시되도록 개선됨.
 
@@ -43,8 +54,66 @@ this.characterCount[index+1] = this.textareas[index+1].length;
 
 
 ## 2-3 해결
+```javascript
+// input file 이벤트 발생 시 나오는 코드
+getPhotoFileName(e) {
+  // #photo_span 요소 숨기기
+  document.getElementById('photo_span').style.display = "none";
+  // #photo_img 요소 보이기
+  document.getElementById('photo_img').style.display = "revert";
+
+  // 파일 가져오기
+  var files = e.target.files;
+  var filesArr = Array.prototype.slice.call(files);
+
+  // 파일 정보를 로컬 스토리지에 저장
+  if (filesArr.length > 0) {
+    var fileName = filesArr[0].name;
+    console.log("filesArr[0].name : " , filesArr[0].name);
+    localStorage.setItem('photo_file_name', fileName);
+    this.files_test = filesArr[0].name;
+  }
+
+  filesArr.forEach(function(f) {
+    if (!f.type.match("image.*")) {
+      alert("확장자는 이미지만 가능합니다.");
+      e.target.value = "";
+
+      // #photo_span 요소 보이기
+      document.getElementById('photo_span').style.display = "revert";
+
+      // #photo_img 요소 숨기기
+      document.getElementById('photo_img').style.display = "none";
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+
+      // 이미지 src 설정
+      var imgElement = document.getElementById('photo_img');
+      console.log("e 확인 : " + e.target);
+      imgElement.src = e.target.result;
+
+      // 이벤트 발생 되면 hidden에 값 넣기
+      document.getElementById('photo_img_hidden').value = "imageExits";
+      }.bind(this);
+      reader.readAsDataURL(f);
+    }, this);
+},
+
+// 임시저장, 최종제출 로직 돌리기 전 나오는 코드
+const imgFileElement = document.getElementById('imgFile');
+const fileName = localStorage.getItem('photo_file_name');
+const imgHidden =  document.getElementById('photo_img_hidden').value;
+
+if (fileName && imgHidden) {
+  imgFileElement.removeAttribute('required') 
+}else{
+  imgFileElement.setAttribute('required', '');
+}
+```
 - input file이 이벤트 발생 시 이미지 이름을 로컬 스토리지에 임시로 값을 넣고, input hidden도 "imageExits" 값을 넣는다 <br>
-- 임시저장, 최종제출 로직 돌리기 전 로컬스토리지와 hidden값을 if으로 확인하여 있다면 "requerid" 제거 없으면 추가
+- 임시저장, 최종제출 로직 돌리기 전 로컬스토리지와 hidden값을 if으로 확인하여 있다면 "required" 제거 없으면 추가
 
 <br>
 
