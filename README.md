@@ -20,6 +20,7 @@
 ## 1-3 해결
 ```javascript
 this.characterCount[index+1] = this.textareas[index+1].length;
+```
 - 코드를 추가하여, 텍스트 영역의 값을 업데이트한 후 글자 수를 저장하도록 수정함. 이로 인해 페이지 재방문 시에도 입력된 글자 수가 올바르게 표시되도록 개선됨.
 
 ## 1-4 느낀점
