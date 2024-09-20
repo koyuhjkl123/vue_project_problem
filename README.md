@@ -118,7 +118,79 @@ if (fileName && imgHidden) {
 <br>
 
 ## 2-4 느낀점
-- 처음에 input file의 값이 왜 안들어오는지 매우 어려웠다.. 나갔다 들어왔을 뿐인데... <br>
+- 처음에 input file의 값이 왜 안들어오는지 매우 어려웠다.. 나갔다 들어왔을 뿐인데...갑자기 값이 초기화 되니깐  if (filesArr.length > 0) {
+    var fileName = filesArr[0].name;
+    console.log("filesArr[0].name : " , filesArr[0].name);
+    localStorage.setItem('photo_file_name', fileName);
+    this.files_test = filesArr[0].name;
+  }
+
+  filesArr.forEach(function(f) {
+    if (!f.type.match("image.*")) {
+      alert("확장자는 이미지만 가능합니다.");
+      e.target.value = "";
+
+      // #photo_span 요소 보이기
+      document.getElementById('photo_span').style.display = "revert";
+
+      // #photo_img 요소 숨기기
+      document.getElementById('photo_img').style.display = "none";
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+
+      // 이미지 src 설정
+      var imgElement = document.getElementById('photo_img');
+      console.log("e 확인 : " + e.target);
+      imgElement.src = e.target.result;
+
+      // 이벤트 발생 되면 hidden에 값 넣기
+      document.getElementById('photo_img_hidden').value = "imageExits";
+      }.bind(this);
+      reader.readAsDataURL(f);
+    }, this);
+},
+
+// 임시저장, 최종제출 로직 돌리기 전 나오는 코드
+const imgFileElement = document.getElementById('imgFile');
+const fileName = localStorage.getItem('photo_file_name');
+const imgHidden =  document.getElementById('photo_img_hidden').value;
+
+if (fileName && imgHidden) {
+  imgFileElement.removeAttribute('required') 
+}else{
+  imgFileElement.setAttribute('required', '');
+}
+```
+- input file이 이벤트 발생 시 이미지 이름을 로컬 스토리지에 임시로 값을 넣고, input hidden도 "imageExits" 값을 넣는다 <br>
+- 임시저장, 최종제출 로직 돌리기 전 로컬스토리지와 hidden값을 if으로 확인하여 있다면 "required" 제거 없으면 추가
+
+<br>
+
+## 2-4 느낀점
+- 처음에 input file의 값이 왜 안들어오는지 매우 어려웠다.. 나갔다 들어왔을 뿐인데...갑자기 값이 초기화 되니깐 <br>
 - 구글링 하니 보안 정책상 값이 자동으로 초기화 된다는 사실을 알고 우선 db에 저장이 되어 있으니 <br>
 - 로컬 스토리지로 이미지 이름을 저장하고 hidden도 값을 추가했다 <br>
 - hidden을 추가한 이유는 file이 이벤트 발생 시 스토리지에 값을 넣는것으로 코드를 짰는데 이미지 넣고 저장안하고 나갔다 들어와도 값이 있기 때문이다 <br>
+
+<br>
+
+# 3. 최종버튼 오류
+
+<br>
+
+## 3-1 문제
+- 최종제출을 클릭하면 알림이 뜨지만 확인을 클릭해도 반응이 없는 현상이 발생(마이페이지에서 제출된것으로 확인됨)
+- ![image](https://github.com/user-attachments/assets/c1c54f64-56ff-44d4-99f4-2341aa0434df)
+
+<br>
+
+## 3-2 원인
+- 테스트 진행해 보았으나 확인을 눌르면 반응이 잘 나타남, 다만 취소 누르고 다시 임시저장, 최종제출 버튼 눌러도 반응이 없는 현상 발생
+
+<br>
+
+## 3-3 해결
+- 현재 원인 파악중.. if에 confirm으로 했지만 취소 할 경우 조치되는 else 구문이 없음
+
