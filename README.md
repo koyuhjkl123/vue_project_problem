@@ -126,8 +126,11 @@ if (fileName && imgHidden) {
 <br>
 
 ## 2-5 참고자료
-- 페이지 이동 후 값 유지
-https://bmangrok.tistory.com/entry/Javascript-%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%9D%B4%EB%8F%99-%ED%9B%84%EC%97%90%EB%8F%84-%EA%B0%92-%EC%9C%A0%EC%A7%80%ED%95%98%EA%B8%B0
+- 페이지 이동 후 값 유지 <br>
+https://bmangrok.tistory.com/entry/Javascript-%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%9D%B4%EB%8F%99-%ED%9B%84%EC%97%90%EB%8F%84-%EA%B0%92-%EC%9C%A0%EC%A7%80%ED%95%98%EA%B8%B0 <br>
+- ChatGPT <br>
+<input type="file"> 요소는 페이지가 새로 고침되거나 이동 시 값이 자동으로 초기화됨, 보안상의 이유로 설계 <br>
+- 
 
 # 3. 최종버튼 오류
 
