@@ -9,7 +9,7 @@
 <br>
 
 ## 1-1 문제
-- 실시간으로 글자 수 세기는 잘 작동하지만, 임시 저장 후 나갔다가 다시 들어오면 글자 수가 0으로 초기화되는 현상 발생.
+- 실시간으로 글자 수 세기는 잘 작동하지만, 임시 저장 후 페이지를 나갔다가 다시 들어오면 textarea의 글자 수가 0으로 표시되는 현상
 - ![문제](https://github.com/user-attachments/assets/683fd16e-45dd-47a6-a496-13ab5ee562ed)
 <br>
 
@@ -35,8 +35,10 @@ res.data.selectApplFrmTechList.forEach((item, index) => {
 - 코드를 추가하여, 텍스트 영역의 값을 업데이트한 후 글자 수를 저장하도록 수정함. 이로 인해 페이지 재방문 시에도 입력된 글자 수가 올바르게 표시되도록 개선됨.
 
 ## 1-4 느낀점
-- 처음으로 프로젝트를 참여하면서 코드가 굉장히 길고 복잡하다고 느껴짐
-- 각 메서드의 순서와 어떤 값이 나오는디 console을 찍으면서 디버깅을 하다보니 문제를 해결 할 수가 있었다
+- 처음으로 프로젝트에 참여하면서 코드가 굉장히 길고 복잡하다고 느꼈습니다.
+- 각 메서드의 순서와 값 확인을 위해 console.log를 활용하여 디버깅을 하면서 문제를 해결할 수 있었습니다.
+- 문제가 발생하는 이유를 파악하기 위해 console.log로 값이 나오는 경우와 안 나오는 경우를 확인할 수 있었습니다
+- 학원 선생님이 'console로 찍어보세요'라고 하신 이유를 직접 느꼈습니다
 
 
 
@@ -45,7 +47,7 @@ res.data.selectApplFrmTechList.forEach((item, index) => {
 <br>
 
 ## 2-1 문제
-- 증명사진을 넣고 임시저장 후 나갔다가 다시 들어오면 "파일을 선택하세요" 파일 값이 초기화되는 현상 발생
+- 증명사진을 넣고 임시 저장 후 나갔다가 다시 들어온 후 최종 제출을 클릭하면, '파일을 선택하세요'라는 메시지가 표시되는 현상이 발생
 - ![문제](https://github.com/user-attachments/assets/995f5045-1650-4d4f-91dd-00ab0be75352)
 
 
@@ -176,7 +178,9 @@ console.log("최종 버튼 취소 확인");
 - 코드를 보고 상태 관리 변수라는 것을 알고 추가하여 해결 되어 뿌듯했당
 
 ## 3-5 참고자료
-- Subquery returns more than 1 row 대한 오류 (1)
+- Subquery returns more than 1 row 대한 오류 (1) <br>
 https://velog.io/@blessole/%EC%98%A4%EB%A5%98-Subquery-returns-more-than-1-row
-- Subquery returns more than 1 row 대한 오류 (2)
+- Subquery returns more than 1 row 대한 오류 (2) <br>
 https://c-yhhhhh.tistory.com/118
+- 버튼 활성화/비활성화 하기 <br>
+https://hianna.tistory.com/477
