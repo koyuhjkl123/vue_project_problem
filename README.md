@@ -183,3 +183,19 @@ https://velog.io/@blessole/%EC%98%A4%EB%A5%98-Subquery-returns-more-than-1-row
 https://c-yhhhhh.tistory.com/118
 - 버튼 활성화/비활성화 하기 <br>
 https://hianna.tistory.com/477
+
+
+# 4. 지원서 작성 오류
+
+<br>
+
+## 4-1 문제
+- 학력사항에 고등학교, 전문대, 대학교, 석사, 박사 등 해당 안내문에 입력을 해도 어느곳에도 입력이 안됨
+- ![image](https://github.com/user-attachments/assets/72b575ef-51d2-4346-af8e-aa0b2311e155)
+- ![image](https://github.com/user-attachments/assets/687b847e-fb0e-4a88-98ce-0a6934fbdbe4)
+
+<br>
+
+## 4-2 원인
+- 학교 졸업 선택에 따른 안내문 입력했지만 확인이 되지 않음
+- 선택에 따라 해당 안내문이 보여야 하지만 고등학교만 보임 단일 조건으로 되어 있어 수정
