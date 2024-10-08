@@ -296,6 +296,8 @@ axios.post("/res/community/qna/insertQna.ajax"  , null, {
 프로젝트를 하면서 문제해결에 있어서 가장 쉬웠던 부분이다.  <br>
 form태그를 초기화를 안시켜서 뿐...
 
+<br>
+
 # 6. 기업페이지 : 화면 줄어들시 메뉴 하위아이콘 보이게 처리
 
 ## 6-1 문제
@@ -386,3 +388,7 @@ displayOnoff() {
 },
 
 ```
+
+<br>
+
+
