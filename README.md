@@ -214,6 +214,27 @@ https://hianna.tistory.com/477
 
 <br>
 
+```
+추가 클릭 시 안내문 + 학교구분 보이지게 하고, 선택에 따라 설정된 안내문 표기됨
+<template v-for="item in Education_addedSections" :key="item.id"> // 학력사항 추가 클릭 시
+  <div v-if="item" :class="'writeTable addTable tb_appl_frm_edu_bkgrnd_sbjt_addDiv_' + item.itm_grp_cd" >
+    <div class="infoArea" style="overflow: auto;"> // 안내문
+      <template v-for="(applFrmToolItmGrpNotic6, index) in selectApplFrmToolItmGrpNoticList" >
+        <template v-if="applFrmToolItmGrpNotic6 && (applFrmToolItmGrpNotic6.itm_grp_cd == school_div[item.id])" >
+          <span v-html="applFrmToolItmGrpNotic6.notic_cont" :key="index"></span> // 전문대학, 대학교, 석사, 박사 설정된 안내문 표기
+        </template>
+      </template>
+    </div>
+```
+
+<br>
+
+## 4-4 느낀점
+Vue.js를 배운적이 없어서 처음에 어떻게 해야 추가버튼만 나오고 추가 클릭 시 나오게 하는지 많이 어려웠다
+vue에서 :key라는 어떻게 활용하는지 잘 모르다 보니 많은 삽질를 했고, vue.js 공식문서를 보면서 해결이 되어서 뿌듯했다
+
+<br>
+
 # 5. 1:1문의 제출후 화면 전환 개선
 
 <br>
@@ -232,3 +253,136 @@ https://hianna.tistory.com/477
 
 ## 5-3 해결
 문의 내용 입력한 후 문의 클릭 후 문의 완료라는 모달 창이 나오고 닫기 버튼 클릭 하면 작성화면에 입력폼 초기화
+
+<br>
+
+```
+axios.post("/res/community/qna/insertQna.ajax"  , null, {
+						params: {
+            				company_no: this.$store.state.mainForm.company_no,
+                            writer_nm: document.getElementById('txt_user_name').value,
+                            writer_mobile_tel_no: document.getElementById('txt_user_mobile_tel_no').value,
+                            writer_id: document.getElementById('txt_user_email').value,
+                            writer_email: document.getElementById('txt_user_email').value,
+                            reg_idx : document.getElementById('txt_user_email').value,
+                            title: document.getElementById('title').value,
+                            board_contents: document.getElementById('board_contents').value,
+                            project_no: document.querySelector('select[name="P_IDX"]').value,
+                            recruit_notic_nm: this.encodedOptionName,
+                            recruit_notic_no: document.querySelector('select[name="P_IDX"]').value,
+          				} 
+					}) 
+					.then(res =>{ 
+						console.log("통신 성공", res);
+
+                        this.isModalViewed1 = !this.isModalViewed1;
+						document.body.style.overflow = "hidden";
+						console.log("모달창 생성");
+                        this.resetForm();  // 추가함
+                        
+					})
+            },
+// 문의내용을 적고 문의를 클릭하면 모달창이 생성된 후 닫기 버튼 누르면 해당 내용 초기화
+            resetForm(){
+                // 문의 클릭 -> form태그 초기화
+				this.$refs.formReset.reset();
+            },
+
+```
+
+<br>
+
+## 5-4 느낀점
+프로젝트를 하면서 문제해결에 있어서 가장 쉬웠던 부분이다.  <br>
+form태그를 초기화를 안시켜서 뿐...
+
+# 6. 기업페이지 : 화면 줄어들시 메뉴 하위아이콘 보이게 처리
+
+## 6-1 문제
+1. 회사소개와 공지사항에는 하위메뉴가 없으므로 해당 아이콘 없애기
+2. 채용문의 하위의 [FAQ], [1:1문의] 메뉴 볼 수 있게 하기
+3. 마이페이지 하위메뉴가 생겼는데, 작은 화면에서는 작동하지 않음.
+
+
+## 6-2 원인
+회사소개, 채용문의, 채용공고, 공지사항 모든 메뉴에 a태그에 아이콘을 추가함 <br>
+채용문의에 하위 메뉴는 display: none으로 되어 있기 때문에 보여지지 않고, 채용문의 클릭시  "FAQ" 로 진입 <br>
+마이페이지 클릭 시  "합격자 발표, 나의 지원서, 계정관리" 작은 메뉴가 나와야 함 작은 화면에서는 클릭하면 반응 없음 <br>
+id="mypage"가 display="none"으로 되어 있어서 뜨지 않은 현상
+
+
+## 6-3 해결
+
+회소개와 공지사항 아이콘 없애기
+<br>
+
+```
+a태그에 적용된 부분을 아래와 같이 수정, 채용공고, 채용문의만 적용
+.layout #wrap #gnb > ul > li:nth-child(2) > a,
+.layout #wrap #gnb > ul > li:nth-child(3) > a{background:url("@/assets/images/res/common/btn-arrow.png") no-repeat right 15px center !important; color: #333;}
+	
+```
+<br>
+
+채용문의 하위의 [FAQ], [1:1문의] 메뉴 볼 수 있게 하기
+
+<br>
+
+```
+
+// display: none을 없애고 @click="isItemMenuOpen = !isItemMenuOpen"을 추가하여
+// 클릭 시 해당 하위 메뉴가 보이게 처리
+<li>
+  <router-link to="" @click="isItemMenuOpen = !isItemMenuOpen">
+    <img src="@/assets/images/res/common/ico0103.png" alt="">채용문의
+  </router-link>
+  <ul v-if="isItemMenuOpen">
+    <li><router-link to="/res/community/faq/listForm">FAQ</router-link></li>
+    <li><router-link to="/res/community/qna/insert" >1:1문의</router-link></li>
+  </ul>
+</li>
+
+```
+
+<br>
+
+마이페이지 하위메뉴가 생겼는데, 작은 화면에서는 작동하지 않음.
+
+<br>
+
+```
+<li @click="displayOnoff();"><router-link to="">마이페이지</router-link>
+  <ul id="mypage">
+    <li ><a @click="openModal()">합격자 발표</a></li>
+    <li v-if="this.$store.state.certificationYN == 'Y'"><router-link to="/res/mypage/applFrmForm" >나의 지원서</router-link></li>
+    <li><router-link to="/res/mypage/accountmanage">계정관리</router-link></li>
+  </ul>
+</li>
+
+// 변경 전
+displayOnoff() {
+  if(this.menuOpened == false){
+    document.getElementById("mypage").style.display= "block";
+    this.menuOpened = true; 
+  } else {
+    document.getElementById("mypage").style.display= "none";
+    this.menuOpened = false; 
+  }
+},
+
+
+// 변경 후
+// 햄버거 메뉴바를 클릭하면 menuOpened true로 변경되어서 마이페이지 메뉴가 뜨지 않은 현상 발견
+// 아래와 같이 수정 후 해결됨
+displayOnoff() {
+  const mypage = document.getElementById('mypage')
+
+  if(mypage.style.display == "none"){
+    mypage.style.display = "block";
+  } else {
+    mypage.style.display = "none";
+  }
+
+},
+
+```
