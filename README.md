@@ -447,9 +447,10 @@ displayOnoff() {
 <br>
 
 ## 6-4 느낀점
-처음에 개발자 도구를 보면서 HTML구조와 CSS를 보고 어떻게 적용 되었는지 확인했고 <br>
-개발자 도구로 css를 조금씩 수정해 나가면서 이부분은 이렇게도 적용이 되는구나 하고 느껴졌다 <br>
-그리고 vue.js에서 v-if로 참, 거짓으로 구분하여 클릭에 따라 html코드를 보여줬다 안보여줬다를 간단하게 할 수 있다는 것에 매우 신기했다ㅋㅋ 
+vue.js에서 v-if로 참, 거짓으로 구분하여 클릭에 따라 html코드를 보여줬다 안보여줬다를 간단하게 할 수 있다는 것에 매우 신기했다ㅋㅋ <br>
+
+<br>
+
 
 # 7. 채용공고문 작성 에디터 기능 오류
 
@@ -487,25 +488,56 @@ displayOnoff() {
 
 ```
 
+<br>
 
 ## 7-4 느낀점
 콘솔로 보니 편집기에서 서식 기능 클릭하면 css가 적용이 되었는데 <br>
 홈페이지에서는 css가 적용 되지 않아서 자료를 찾아보고 확인해 보니 <br>
 다음 에디터 전용 css가 적용이 되어 있지 않아서 문제가 발생 된것이었다
 
+<br>
+
 ## 7-5 자료
+<인용구가 적용되지 않습니다>
 https://github.com/kakao/DaumEditor/issues/292
 
+# 8. 기업페이지 화면 비율에 따라 이미지 축소
 
+<br>
 
 ## 8-1 문제
-### 문제유형 : 
-### 문제타입 :
-### 시작일자 :
-### 해결일자 :
-### 작업 소요기간 : 
+### 문제유형 : UI 개선 
+### 문제타입 : 보통
+### 시작일자 : 2024-10-08
+### 해결일자 : 2024-10-10 (10월 09일 한글날 제외)
+### 작업 소요기간 : 1일
+반응형 페이지에서, 메인이미지가 오른쪽이 점차 잘리는 형태로 되어 있습니다. 혹시, 이미지 전체가 비율로 축소되는 형태로 수정가능할까요?
 
+## 8-2 원인
+기존에 오른쪽으로 점차 잘리는 형태로 했으나 고객사에서 수정 요청
 
+## 8-3 해결
+
+이미지 전체가 비율로 축소되는 형태로 수정
+
+<br>
+
+```
+// 기존 css를 수정 및 추가함
+.layout.main.v5 #container .content .quickArea {top:450px; left:0; padding:0 10px; transform:translate(0, 0); -webkit-transform:translate(0, 0); -moz-transform:translate(0, 0)}
+.layout.main.v5 #container .content .quickArea a{display:block; padding:25px 15px 28px; height:124px; max-width: 80%;}
+.layout.main.v5 #container .content .quickArea a strong {margin-bottom:7px; line-height:30px; font-size:17px}
+.layout.main.v5 #container .content .quickArea a p {line-height:17px; font-size:11px}
+.layout.main.v5 #container .content .quickArea a span {top:5px; right:5px; height:35px}
+
+/* 추가 */
+.layout.main.v5 #container .content .quickArea a span img {height:80%}
+```
+<br>
+
+## 8-4 느낀점
+처음에 개발자 도구를 보면서 HTML구조와 CSS를 보고 어떻게 적용 되었는지 확인했고 <br>
+개발자 도구로 css를 조금씩 수정해 나가면서 이부분은 이렇게도 적용이 되는구나 하고 느껴졌다 <br>
 
 
 
