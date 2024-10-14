@@ -540,16 +540,150 @@ https://github.com/kakao/DaumEditor/issues/292
 개발자 도구로 css를 조금씩 수정해 나가면서 이부분은 이렇게도 적용이 되는구나 하고 느껴졌다 <br>
 
 
+<br>
+
+# 9. 기업담당자> 보관함 > 필기도구 > 필기도구 등록 팝업에 도구 코드 열 추가
+
+<br>
+
+## 9-1 문제
+### 문제유형 : UI 개선 
+### 문제타입 : 보통
+### 시작일자 : 2024-10-14
+### 해결일자 : 2024-10-14
+### 작업 소요기간 : 1일
+![image](https://github.com/user-attachments/assets/e2d02a8a-2b0d-4e33-bf8d-9cf0d69d8684)
+1. 도구가 가지고 있는 코드를 추가하기
+2. 텍스트 길 때에도 한 줄로만 보이도록 하기
 
 
+## 9-2 원인
+고객사에서 도구가 가지고 있는 고유코드를 추가 및 개선
+
+<br>
+
+## 9-3 해결
+
+도구가 가지고 있는 코드를 추가하기 <br>
+텍스트 길 때에도 한 줄로만 보이도록 하기
+
+<br>             
+
+```
+<div class="popup__header">
+	<h3 class="popup__title">필기도구 등록</h3>
+</div>
+<div class="popup__contents popup__scroll-view" style="max-height: 485px;">
+	<div class="board-body">
+		<div class="table table-type1">
+			<table id="writeToolRegTable" class="type-s type-line">
+				<colgroup>
+					<col style="width: 50px" />
+					<col style="width: 50px" />
+					<col style="width: 70px" /> // 해당 th 넓이 추가
+					<col style="width: 200px" />
+					<col>
+					<col style="width: 100px;">
+					<col style="width: 100px;">
+				</colgroup>
+				<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">NO</th>
+						<th scope="col">코드</th> // 코드 추가
+						<th scope="col">도구명</th>
+						<th scope="col">정의</th>
+						<th scope="col">총점</th>
+						<th scope="col">검사시간</th>
+					</tr>
+				</thead>
+				<tbody class="first-td-bdt0">
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
 
 
+function writeToolRegList() {
+
+	$('#writeToolRegTable').DataTable().destroy();
+
+	var searchType = '';
+	var searchVal = '';
+	var tableId = "#writeToolRegTable";
+	var urlVal = "/content/wri/getList.json";
+	var columnsVal = [
+		{ "data" : "twCode",
+		sortable: false,
+						  
+		"render" : function(data, type, row, meta) {
+					
+			if(type === 'display') {
+				data = '<label class="input-chk"> <input type="radio" name="writeToolRegRadio" value="' + data + '"/> <span class="isHidden">선택</span> </label>';
+			}
+			return data;
+		}
+		},
+		{ data: "rownum",
+			className: "wd-20",
+			sortable: false,
+			render: function (data, type, row, meta) {
+				return meta.row + meta.settings._iDisplayStart + 1;
+			}
+			},
+			{ "data" : "twCode"}, // 고유 코드 추가
+			{ "data" : "twTitle"},
+			{ "data" : "twDefinition"},
+			{ "data" : "twtsTitle"},
+			{ "data" : "twExamTime",
+				"render" : function(data, type, row, meta) {
+				if(type === 'display') {
+					 data = '<td>' + getTETText(row.twExamTimeGbn, row.twExamTime) + '</td>';
+				}
+					return data;
+				}
+			}
+	];
+
+	var paramsVal = function (d) {
+		d = dataVal(d,columnsVal);
+		d.length = $("#length").val();
+		d.companyNo = 0;
+		d.menuId = '30000300';
+		d.searchType = searchType;
+		d.searchVal = searchVal;
+					
+		return d;
+	}
+		
+	setTableGrid(tableId, urlVal, paramsVal, columnsVal);
+		
+}
+```
+<br>
+
+## 9-4 느낀점
+DataTables() 라이브러리를 처음 사용해 보았고, JSON 타입으로 데이터를 주고받는 구조가 인상적이었다. <br>
+최상위 값을 쉽게 받을 수 있고, 테이블 형태로 데이터를 표시할 수 있다는 점에서 매우 유용하다고 느껴졌다 <br>
+그러나 데이터를 추가하는 과정에서 어려움을 겪었고. 예를 들어, {"data" : "twCode"}로 설정했을 때 <td> 태그만 추가되고 <th>는 추가되지 않아 한참을 삽질을 해야했고ㅠㅠ <br>
+<br>
+결국 <th>코드</th>처럼 명시적으로 추가해주면 간단하게 해결되는 문제였다는 것을 깨달았고, 자료도 중요하지만, <br>
+이전 개발자의 코드를 꼼꼼히 살펴보는 것이 얼마나 중요한지 다시 한번 느껴지는 하루! 
 
 
+## 9-5 자료
+
+datatables 사용법 <br>
+https://blog.naver.com/jskimmail/222006260605  <br>
+
+DataTables - Ajax Table Data 출력 <br>
+https://drg2524.tistory.com/163 <br>
 
 
-
-
+Grid 라이브러리-Datatables 사용법/예제 <br>
+https://kutar37.tistory.com/entry/Grid-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%ACDatatables-%EC%82%AC%EC%9A%A9%EB%B2%95%EC%98%88%EC%A0%9C <br>
 
 
 
