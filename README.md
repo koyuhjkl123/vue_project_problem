@@ -542,7 +542,7 @@ https://github.com/kakao/DaumEditor/issues/292
 
 <br>
 
-# 9. 기업담당자> 보관함 > 필기도구 > 필기도구 등록 팝업에 도구 코드 열 추가
+# 9. 필기도구 등록 팝업에 도구 코드 열 추가
 
 <br>
 
@@ -686,6 +686,40 @@ Grid 라이브러리-Datatables 사용법/예제 <br>
 https://kutar37.tistory.com/entry/Grid-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%ACDatatables-%EC%82%AC%EC%9A%A9%EB%B2%95%EC%98%88%EC%A0%9C <br>
 
 
+<br>
+
+# 10. 메인이미지 확장자제
+
+<br>
+
+## 10-1 문제
+### 문제유형 : UI 개선 
+### 문제타입 : 높음
+### 시작일자 : 
+### 해결일자 : 
+### 작업 소요기간 : 
+![image](https://github.com/user-attachments/assets/8df12d11-b481-462c-9ef7-bc9cee327f80)
+webp 확장자는 업로드가 되는데, png 확장자를 업로드하려니 오류가 납니다. 이미지 파일 업로드에 제한조건들이 있으면 알려주세요
+
+<br>
+
+## 10-2 원인
+메인이미지를 png 확장자로 업로드 시 에러 발생 
+
+<br>
 
 
+## 10-3 해결
 
+```
+```
+
+<br>
+
+## 10-4 느낀점
+
+<br>
+
+## 10-5 자료
+
+<br>
