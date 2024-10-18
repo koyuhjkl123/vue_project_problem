@@ -839,3 +839,119 @@ js 코드 수정으로 인해 사용자는 체크박스의 상태를 더 직관�
 
 <br>
 
+# 12. 채용홈페이지 -> 지원서 작성 : 지원서 불러오기 증명사진 오류
+
+<br>
+
+## 12-1 문제
+### 문제유형 : bug
+### 문제타입 : 긴급
+### 시작일자 : 2024-10-18
+### 해결일자 : 2024-10-
+### 작업 소요기간 : 
+![image](https://github.com/user-attachments/assets/ad6a5633-0173-4b7e-843e-8246d539f688)
+입사지원서에서 "지원서 불러오기" 클릭 후  <br>
+최종제출 클릭하면 "파일을 선택하세요" 라는 문구가 나오면서 제출이 안됨 <br>
+저장 없이 나가기 버튼 누르고 다시 들어가면 증명사진 이름 값이 그대로 있음
+
+<br>
+
+## 11-2 원인
+둘다 if를 잘못 적용
+
+<br>
+
+
+## 11-3 해결
+지원서 불러오기 후 최종제출 클릭하면 정상적으로 제출 수정 완료
+저장 없이 나가기 버튼 누르고 다시 들어가면 이미지 이름 값 없음 수정 완료
+
+<br>
+
+```
+// 지원서 불러오기 후 최종제출 클릭 오류 해결
+// 변경 전
+async BeforeSaveApplicant(appl_frm_submit_yn){//임시저장/ 최종제출 로직 돌리기 전에 작업해야하는 것
+	if(this.isSave){
+		if(appl_frm_submit_yn == 'Y'){
+	
+			const imgFileElement = document.getElementById('imgFile');
+			const fileName = localStorage.getItem('photo_file_name');
+			var imgHidden =  document.getElementById('photo_img_hidden').value;
+		
+			if (fileName && imgHidden) {
+				imgFileElement.removeAttribute('required') 
+			}else{
+			 	imgFileElement.setAttribute('required', '');
+	}
+
+// 변경 후
+async BeforeSaveApplicant(appl_frm_submit_yn){//임시저장/ 최종제출 로직 돌리기 전에 작업해야하는 것
+	if(this.isSave){
+		if(appl_frm_submit_yn == 'Y'){
+	
+			const imgFileElement = document.getElementById('imgFile');
+			const fileName = localStorage.getItem('photo_file_name');
+			var imgHidden =  document.getElementById('photo_img_hidden').value;
+
+// && --> || and에서 or로 변경 로컬스토리지 저장된 이미지 이름 혹은 이미지가 들어가기만 하면 나오는 hidden값 
+			if (fileName || imgHidden) {
+				imgFileElement.removeAttribute('required') 
+			}else{
+			 	imgFileElement.setAttribute('required', '');
+			}
+
+
+// 나가기 버튼 누른 후 이미지 이름 값 없애기
+// 변경 전
+cancleApplicant(){
+	if(this.test_yn == 'Y'){
+		const userConfirmed  = confirm("테스트를 종료합니다.");
+		if(userConfirmed ){
+			window.close();
+		}
+	}else{
+		this.clickedExitButton = true;
+		const userConfirmed  = confirm("임시저장하지 않은 내용은 저장되지 않을 수 있습니다.");
+		// 만약 파일 이미지 넣고 나가기만 했을 경우
+		const fileHidden = document.getElementById('photo_img_hidden').value;
+		const fileName = localStorage.getItem('photo_file_name');
+		
+		console.log("fileHidden : ", fileHidden);
+		console.log("imgElement : ", fileName);
+		if(fileHidden != "imageExits" && fileName){
+			localStorage.removeItem('photo_file_name');
+		}
+		if(userConfirmed ){
+			this.$router.push('/');
+		}
+	}
+},
+
+// 변경 후
+cancleApplicant(){
+	if(this.test_yn == 'Y'){ㅣ
+		const userConfirmed  = confirm("테스트를 종료합니다.");
+		if(userConfirmed ){
+			window.close();
+		}
+	}else{
+		this.clickedExitButton = true;
+		const userConfirmed  = confirm("임시저장하지 않은 내용은 저장되지 않을 수 있습니다.");
+		// 만약 파일 이미지 넣고 나가기만 했을 경우
+		const fileHidden = document.getElementById('photo_img_hidden').value;
+		const fileName = localStorage.getItem('photo_file_name');
+		
+		console.log("fileHidden : ", fileHidden);
+		console.log("imgElement : ", fileName);
+		if(fileName){ // 지원서 불러오기 할 때 해당 증명사진이 있을 경우 fileHidden = "imageExits"이 넣어짐 
+			localStorage.removeItem('photo_file_name');
+		}
+		if(userConfirmed ){
+			this.$router.push('/');
+		}
+	}
+},
+
+```
+
