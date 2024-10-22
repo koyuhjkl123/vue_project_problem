@@ -18,6 +18,10 @@ Java, JavaSpring
 ### 협업도구
 Git, GitLab
 
+### 나의 성과
+#### Bug : 7개
+#### UI개선 : 5개
+#### 오류 발견 : Bug 5개(해결 2개)
 <br>
 <br>
 
