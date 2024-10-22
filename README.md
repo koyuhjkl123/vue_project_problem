@@ -26,8 +26,7 @@ Git, GitLab
 <br>
 
 ## 1-1 문제
-### 문제유형 : bug
-### 문제타입 : 긴급
+### 문제유형 : bug (긴급)
 ### 시작일자 : 2024-09-09
 ### 해결일자 : 2024-09-11
 ### 작업 소요기간 : 3일
@@ -69,8 +68,7 @@ res.data.selectApplFrmTechList.forEach((item, index) => {
 <br>
 
 ## 2-1 문제
-### 문제유형 : bug
-### 문제타입 : 긴급
+### 문제유형 : bug (긴급)
 ### 시작일자 : 2024-09-12
 ### 해결일자 : 2024-09-19
 ### 작업 소요기간 : 3일(16일 ~ 18일 추석 연휴)
@@ -165,8 +163,7 @@ https://bmangrok.tistory.com/entry/Javascript-%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%9D
 <br>
 
 ## 3-1 문제
-### 문제유형 : bug
-### 문제타입 : 긴급
+### 문제유형 : bug (긴급)
 ### 시작일자 : 2024-09-19
 ### 해결일자 : 2024-09-24
 ### 작업 소요기간 : 4일
@@ -223,8 +220,7 @@ https://hianna.tistory.com/477
 <br>
 
 ## 4-1 문제
-### 문제유형 : UI개선
-### 문제타입 : 보통
+### 문제유형 : UI개선 (높음)
 ### 시작일자 : 2024-09-24
 ### 해결일자 : 2024-09-25
 ### 작업 소요기간 : 2일
@@ -291,8 +287,7 @@ form태그를 초기화를 안시켜서 뿐...
 <br>
 
 ## 5-1 문제
-### 문제유형 : bug
-### 문제타입 : 긴급
+### 문제유형 : bug (긴급)
 ### 시작일자 : 2024-09-25
 ### 해결일자 : 2024-09-27
 ### 작업 소요기간 : 3일
@@ -352,8 +347,7 @@ https://vueframework.com/docs/v3/ko/ko-KR/guide/migration/key-attribute.html#%E1
 # 6. 기업페이지 : 화면 줄어들시 메뉴 하위아이콘 보이게 처리
 
 ## 6-1 문제
-### 문제유형 : UI 메뉴 개선
-### 문제타입 : 높음
+### 문제유형 : UI 메뉴 개선 (높음)
 ### 시작일자 : 2024-09-27
 ### 해결일자 : 2024-10-02
 ### 작업 소요기간 : 3일 (10월 01일 공휴일 제외)
@@ -457,8 +451,7 @@ vue.js에서 v-if로 참, 거짓으로 구분하여 클릭에 따라 html코드�
 <br>
 
 ## 7-1 문제
-### 문제유형 : bug
-### 문제타입 : 긴급
+### 문제유형 : bug (긴급)
 ### 시작일자 : 2024-10-02
 ### 해결일자 : 2024-10-07
 ### 작업 소요기간 : 3일(10월 3일 공휴일 제외)
@@ -506,8 +499,7 @@ https://github.com/kakao/DaumEditor/issues/292
 <br>
 
 ## 8-1 문제
-### 문제유형 : UI 개선 
-### 문제타입 : 보통
+### 문제유형 : UI 개선 (보통)
 ### 시작일자 : 2024-10-08
 ### 해결일자 : 2024-10-10 (10월 09일 한글날 제외)
 ### 작업 소요기간 : 1일
@@ -547,8 +539,7 @@ https://github.com/kakao/DaumEditor/issues/292
 <br>
 
 ## 9-1 문제
-### 문제유형 : UI 개선 
-### 문제타입 : 보통
+### 문제유형 : UI 개선 (보통)
 ### 시작일자 : 2024-10-14
 ### 해결일자 : 2024-10-14
 ### 작업 소요기간 : 1일
@@ -693,8 +684,7 @@ https://kutar37.tistory.com/entry/Grid-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A
 <br>
 
 ## 10-1 문제
-### 문제유형 : UI 개선 
-### 문제타입 : 높음
+### 문제유형 : UI 개선 (높음)
 ### 시작일자 : 2024-10-15
 ### 해결일자 : 
 ### 작업 소요기간 : 
@@ -736,8 +726,7 @@ https://iamiet.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%E
 <br>
 
 ## 11-1 문제
-### 문제유형 : UI 개선 
-### 문제타입 : 보통
+### 문제유형 : UI 개선 (보통)
 ### 시작일자 : 2024-10-16
 ### 해결일자 : 2024-10-16
 ### 작업 소요기간 : 1일
@@ -844,10 +833,9 @@ js 코드 수정으로 인해 사용자는 체크박스의 상태를 더 직관�
 <br>
 
 ## 12-1 문제
-### 문제유형 : bug
-### 문제타입 : 긴급
+### 문제유형 : bug (긴급)
 ### 시작일자 : 2024-10-18
-### 해결일자 : 2024-10-
+### 해결일자 : 2024-10-18
 ### 작업 소요기간 : 
 ![image](https://github.com/user-attachments/assets/ad6a5633-0173-4b7e-843e-8246d539f688)
 입사지원서에서 "지원서 불러오기" 클릭 후  <br>
@@ -863,7 +851,7 @@ js 코드 수정으로 인해 사용자는 체크박스의 상태를 더 직관�
 
 
 ## 12-3 해결
-지원서 불러오기 후 최종제출 클릭하면 정상적으로 제출 수정 완료
+지원서 불러오기 후 최종제출 클릭하면 정상적으로 제출 수정 완료 <br>
 저장 없이 나가기 버튼 누르고 다시 들어가면 이미지 이름 값 없음 수정 완료
 
 <br>
@@ -963,5 +951,126 @@ cancleApplicant(){
 또한, 조건문에서 &&와 ||의 차이점을 잘 이해하고 적용하는 것이 문제 해결에 큰 영향을 미친다는 점도 인상 깊었고, <br>
 앞으로는 코드 작성 시, 각 변수의 상태와 의미를 더 철저히 검토하고, 다양한 시나리오를 고려하여 코드를 작성해야겠다고 다짐하기로 내 자신과 약속
 
+
+<br>
+
+# 13. 기업페이지 -> 채용관리 -> 필기전형 -> 전형기간 설정 시 오류
+
+<br>
+
+## 13-1 문제
+### 문제유형 : bug (긴급)
+### 시작일자 : 2024-10-21
+### 해결일자 : 2024-10-21
+### 작업 소요기간 : 
+![image](https://github.com/user-attachments/assets/e44f54b3-42d4-4f8f-9ef0-a3622613224b)
+전형기간은 공고기간 내에 설정 시 정상적으로 작동함 <br>
+하지만 공고기간 시작일보다 이전, 또는 공고기간 종료일보다 이후에 전형기간을 설정할 경우, 오류 메시지 없이 빈 팝업이 나타나며 저장되지 않음.
+
+<br>
+
+## 13-2 원인
+전형기간 설정 시, 공고기간과의 관계를 검증하는 if 조건이 코드에 누락되어 발생한 문제.  <br>
+전형기간이 공고기간보다 이전이거나 이후로 설정될 경우, 이를 검증하는 로직이 없기 때문에 오류 메시지 없이 빈 팝업이 나타남.
+
+<br>
+
+
+## 13-3 해결
+전형기간이 공고기간 내에 설정되도록 검증 로직을 추가하여 문제 해결.
+
+<br>
+
+```
+
+// 변경 전
+
+let scrnStartDt = $('#txtWriteStartDate').val();
+let scrnStartTime = $('#txtWriteStartTime').val();
+let scrnEndDt = $('#txtWriteEndDate').val();
+let scrnEndTime = $('#txtWriteEndTime').val();
+		
+let startDate = scrnStartDt + ' ' + scrnStartTime;
+let endDate = scrnEndDt + ' ' + scrnEndTime;
+		
+let startDateValidate = new Date(scrnStartDt);
+let endDateValidate = new Date(scrnEndDt);
+
+console.log(startDateValidate + '########' + endDateValidate);
+
+if(scrnStartDt === '' || scrnStartDt === null || scrnEndDt === '' || scrnEndDt === null) {
+	alert('필기전형 기간을 입력하세요.');
+	return;
+}
+				
+if(scrnStartTime === '' || scrnStartTime === null || scrnEndTime === '' || scrnEndTime === null) {	
+	alert('필기전형 시간을 입력하세요.');
+	return;
+}
+		
+if(startDateValidate > endDateValidate) {
+	alert('필기전형 완료일자가 시작일자보다 앞설 수 없습니다.');
+	return;
+}
+
+
+// 변경 후
+
+let scrnStartDt = $('#txtWriteStartDate').val();
+let scrnStartTime = $('#txtWriteStartTime').val();
+let scrnEndDt = $('#txtWriteEndDate').val();
+let scrnEndTime = $('#txtWriteEndTime').val();
+
+// hidden으로 보낸 공고기간 값을 가져옴
+let recruitDt = $('#recruitDt').val();
+		
+// ~ 기준으로 앞, 뒤 값이 나뉘어짐
+let dataReg = recruitDt.split(" ~ ");
+let recruitStartDt = dataReg[0];
+let recruitEndDt = dataReg[1];
+		
+		
+let startDate = scrnStartDt + ' ' + scrnStartTime;
+let endDate = scrnEndDt + ' ' + scrnEndTime;
+		
+let startDateValidate = new Date(scrnStartDt);
+let endDateValidate = new Date(scrnEndDt);
+// 위 값과 일관되게 하기위해
+let recruitStartDtValidate = new Date(recruitStartDt);
+let recruitEndDtValidate = new Date(recruitEndDt);
+		
+// 값이 제대로 되었는지 로그
+console.log("recruitStartDtValidate : ", recruitStartDtValidate);
+console.log("recruitEndDtValidate : ", recruitEndDtValidate);
+console.log(startDateValidate + '########' + endDateValidate);
+
+if(scrnStartDt === '' || scrnStartDt === null || scrnEndDt === '' || scrnEndDt === null) {
+	alert('필기전형 기간을 입력하세요.');
+	return;
+}
+// 전형기간 시작일자 < 공고기간 시작 일자 || 전형기간 종료일자 > 공고기간 종료일자
+if(startDateValidate < recruitStartDtValidate || endDateValidate > recruitEndDtValidate){
+	alert('전형기간은 공고기간 내에 설정해야 합니다. 다시 확인해 주세요.');
+	return;
+}
+				
+if(scrnStartTime === '' || scrnStartTime === null || scrnEndTime === '' || scrnEndTime === null) {	
+	alert('필기전형 시간을 입력하세요.');
+	return;
+}
+		
+if(startDateValidate > endDateValidate) {
+	alert('필기전형 완료일자가 시작일자보다 앞설 수 없습니다.');
+	return;
+}
+
+```
+
+<br>
+
+## 13-4 느낀점
+이번 테스트를 진행하며, 스스로 문제를 발견하고 해결할 수 있었던 점에 큰 의미가 있었습니다.  <br>
+코드를 분석하면서 전형 기간 설정 시 공고기간과의 관계를 검증하지 않은 것이 문제의 원인임을 파악했고, 공고기간 값을 hidden 필드를 통해 가져와 검증 로직을 추가했습니다. <br>
+이를 통해 문제를 해결하였고, 매우 보람찬 경험이었습니다.
 
 <br>
