@@ -586,7 +586,7 @@ https://github.com/kakao/DaumEditor/issues/292
 
 <br>
 
-# 9. 필기도구 등록 팝업에 도구 코드 열 추가
+# 9. 기업 담당자 > 보관함 > 필기도구 > 필기도구 등록 팝업에 도구 코드 열 추가
 
 <br>
 
