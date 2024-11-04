@@ -1180,3 +1180,64 @@ if를 통해 이 문제를 간단하게 해결했다  <br>
 
 <br>
 
+
+# 15. 기업페이지 -> 채용관리 -> 필기전형 : 응시안내 메일발송 오류
+
+<br>
+
+## 15-1 문제
+### 문제유형 : bug (긴급)
+### 문제타입 : 채용관리시스템
+### 시작일자 : 2024-11-01
+### 해결일자 : 2024-11-01
+### 작업 소요기간 : 
+![image](https://github.com/user-attachments/assets/d81f5f5d-b5bf-4a27-8f9f-8f906cfcdf96)
+"평가실" 클릭, 엑셀 등록 후 저장 클릭 하면 "저장 중 문제가 발생하였습니다" 오류 발생
+
+<br>
+
+## 15-2 원인
+면접 전형 -> 평가 설정에서 "평가 유형"명을 ""11월 면접 전형" 띄어쓰기를 하면 에러 발생 <br>
+mapper에서 "REPLACE(REPLACE(#{recruitScrnTypeNm}, ' ', '' ), '(실)',  '')" 공백을 전부 제거를 했기 때문에 일치 하지 않아서 발생되는 문제
+
+<br>
+
+## 15-3 해결
+
+```
+
+// 변경 전  
+<select id="selectRecruitScrnTypeNo" parameterType="com.org.mgt.recruit.vo.MgtRecruitVO" resultType="int">
+		/** selectRecruitScrnTypeNo **/
+			SELECT 	recruit_scrn_type_no
+			FROM 	tb_recruit_scrn_tool_eval_dsgn
+			WHERE 	recruit_notic_no 		=	#{recruitNoticNo}
+			AND 	recruit_field_no 		= 	#{recruitFieldNo}
+			AND 	recruit_scrn_div_cd 	= 	#{recruitScrnDivCd}
+			AND 	recruit_scrn_num 		= 	#{recruitScrnNum}
+			AND 	recruit_scrn_type_nm 	= 	REPLACE(REPLACE(#{recruitScrnTypeNm}, ' ', '' ), '(실)',  '')
+<!-- 		AND recruit_scrn_type_nm = #{recruitScrnTypeNm} -->
+	</select>
+
+// 변경 후
+
+<select id="selectRecruitScrnTypeNo" parameterType="com.org.mgt.recruit.vo.MgtRecruitVO" resultType="int">
+		/** selectRecruitScrnTypeNo **/
+			SELECT 	recruit_scrn_type_no
+			FROM 	tb_recruit_scrn_tool_eval_dsgn -- 채용전형도구및평가설계
+			WHERE 	recruit_notic_no 		=	#{recruitNoticNo}
+			AND 	recruit_field_no 		= 	#{recruitFieldNo}
+			AND 	recruit_scrn_div_cd 	= 	#{recruitScrnDivCd}
+			AND 	recruit_scrn_num 		= 	#{recruitScrnNum}
+			AND 	recruit_scrn_type_nm 	= 	LTRIM(REPLACE(#{recruitScrnTypeNm}, '(실)',  '')) // 출력해보니 왼쪽 공백도 같이 생겨서 "LTRIM을 추가하여 왼쪽 공백도 같이 제거
+<!-- 		AND recruit_scrn_type_nm = #{recruitScrnTypeNm} -->
+	</select>
+```
+
+## 15-4 느낀점
+처음에 면접 유형명을 공백이 있든 없든 입력하고 저장을 누르면 db에 그대로 저장이 되는데 <br>
+Mapper에서 select할 때 공백을 전부 제거한 상태로 해서 값이 에러가 발생 했다.. 반환 값은 int인데 일치하지 않으니 null이 뜸 <br>
+공백이 제거하는 부분은 코드를 지우고 실행 했더니 다시 오류가 나왔다.. <br>
+이번엔 왼쪽 공백이 생겨서이다... 코드를 보니 생기는 이유가 없는데 있어서 놀랬고 왼쪽 공백을 제거하는 코드를 추가로 넣었더니 해결! 
+
+<br>
