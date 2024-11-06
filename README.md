@@ -1188,8 +1188,8 @@ if를 통해 이 문제를 간단하게 해결했다  <br>
 ## 15-1 문제
 ### 문제유형 : bug (긴급)
 ### 문제타입 : 채용관리시스템
-### 시작일자 : 2024-11-01
-### 해결일자 : 2024-11-01
+### 시작일자 : 2024-11-05
+### 해결일자 : 2024-11-05
 ### 작업 소요기간 : 
 ![image](https://github.com/user-attachments/assets/d81f5f5d-b5bf-4a27-8f9f-8f906cfcdf96)
 "평가실" 클릭, 엑셀 등록 후 저장 클릭 하면 "저장 중 문제가 발생하였습니다" 오류 발생
@@ -1239,5 +1239,75 @@ mapper에서 "REPLACE(REPLACE(#{recruitScrnTypeNm}, ' ', '' ), '(실)',  '')" �
 Mapper에서 select할 때 공백을 전부 제거한 상태로 해서 값이 에러가 발생 했다.. 반환 값은 int인데 일치하지 않으니 null이 뜸 <br>
 공백이 제거하는 부분은 코드를 지우고 실행 했더니 다시 오류가 나왔다.. <br>
 이번엔 왼쪽 공백이 생겨서이다... 코드를 보니 생기는 이유가 없는데 있어서 놀랬고 왼쪽 공백을 제거하는 코드를 추가로 넣었더니 해결! 
+
+<br>
+
+
+# 16. 기업페이지 -> 채용관리 -> 필기전형 -> 발송 -> E-mail(지원자) 메일 발송 오류
+
+<br>
+
+## 16-1 문제
+### 문제유형 : bug (긴급)
+### 문제타입 : 채용관리시스템
+### 시작일자 : 2024-11-06
+### 해결일자 : 2024-11-06
+### 작업 소요기간 : 
+![image](https://github.com/user-attachments/assets/7831aa27-28bf-467b-8225-11d748b28958)
+E-mail(지원자) 클릭 후 받은 메일 주소 정보 기재 후 발송 버튼 누르면 "발송되었습니다"라는 문구는 뜨지만 해당 계정에 들어가 보면 받은 메일이 없음 <br>
+추가적으로, 지원자 선택 -> E-mail(지원자) 클릭 후 받은 메일 주소 정보를 가져옴(서류전형, 면접전형) 필기 전형만 메일 정보를 못 가져옴
+
+<br>
+
+## 16-2 원인
+API기능 유효기간이 지나서 메일 발송이 안되었음, 유효기간 설정 후 발송  <br>
+추가적으로 필기 전형은 E-mail(지원자) 클릭 후 받은 메일 주소 값을 못 가져옴 <br>
+
+
+<br>
+
+## 16-3 해결
+
+```
+
+// 변경 전  
+if (type === "applicant") {//서류전형>신청자      
+	let data = $("#resultTable").DataTable().rows().data();
+	$("input:checkbox[name='arrExamNos']:checked").each(function() {
+		let tgt = data.filter(d => d['examNo'] === $(this).val())[0];
+		if (!tgt['email']) return;
+			wapCom0055EmailAdd.addTag(tgt['applicantScrnName'], tgt['email'], [{'key': 'WapEmpl0055MexamNo', 'val': $(this).val()}]);
+	});
+        
+} else if (type === "writeApplicant") {//필기전형>신청자
+	let data = $("#writeUserTable").DataTable().rows().data();
+	$("input:checkbox[name='arrExamNos']:checked").each(function() {
+		let tgt = data.filter(d => d['EXAM_NO'] === $(this).val())[0];
+		if (!tgt['EMAIL']) return;
+		wapCom0055EmailAdd.addTag(tgt['NAME'], tgt['EMAIL'], [{'key': 'WapEmpl0055MexamNo', 'val': $(this).val()}]);
+	});
+
+// 변경 후
+
+if (type === "applicant") {//서류전형>신청자      
+	let data = $("#resultTable").DataTable().rows().data();
+	$("input:checkbox[name='arrExamNos']:checked").each(function() {
+		let tgt = data.filter(d => d['examNo'] === $(this).val())[0];
+		if (!tgt['email']) return;
+		wapCom0055EmailAdd.addTag(tgt['applicantScrnName'], tgt['email'], [{'key': 'WapEmpl0055MexamNo', 'val': $(this).val()}]);
+	});
+        
+} else if (type === "writeApplicant") {//필기전형>신청자
+	let data = $("#writeUserTable").DataTable().rows().data();
+	$("input:checkbox[name='arrExamNos']:checked").each(function() {
+		let tgt = data.filter(d => d['examNo'] === $(this).val())[0];
+		if (!tgt['email']) return; // 파라미터 값이 전부 대문자라 못 가져옴
+		wapCom0055EmailAdd.addTag(tgt['name'], tgt['email'], [{'key': 'WapEmpl0055MexamNo', 'val': $(this).val()}]);
+	});
+```
+
+## 16-4 느낀점
+3가지 전형 중 전부 메일 정보를 가져 오는데 필기전형에서만 못 가져와서 콘솔 로그를 찍어서 확인 해보니 <br>
+3가지 전형 전부 동일 파라미터인데 필기 전형만 대문자로 가져오려니 "undefined"반환되어 안나옴 <br>
 
 <br>
